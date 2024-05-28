@@ -1,0 +1,35 @@
+#include <iostream>
+#include <vector>
+#include <stack>
+
+using namespace std;
+
+vector<int> solve(int N, vector<int>& C) {
+    stack<int> chocolateStack;
+    vector<int> soldChocolates;
+
+    for (int i = 0; i < N; ++i) {
+        if (C[i] == 0) {
+            soldChocolates.push_back(chocolateStack.top());
+            chocolateStack.pop();
+        } else {
+            chocolateStack.push(C[i]);
+        }
+    }
+
+    return soldChocolates;
+}
+
+int main() {
+    int N = 3;
+    vector<int> C = {5, 0, 5};
+
+    vector<int> result = solve(N, C);
+
+    for (int chocolate : result) {
+        cout << chocolate << " ";
+    }
+    cout << endl; // Output: 5
+
+    return 0;
+}
